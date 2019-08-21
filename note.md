@@ -31,6 +31,14 @@
 - postcss-loader autoprefixer 需创建postcss.config.js
 
 ## 配置css压缩plugins
-- MiniCssExtractPlugin // https://www.npmjs.com/package/mini-css-extract-plugin
-- OptimizeCssAssetsWebpackPlugin(optimization.minimizer = [new plugin()])
+- MiniCssExtractPlugin
+- OptimizeCssAssetsWebpackPlugin
 - TerserJSPlugin
+```
+optimization: { // 优化项
+    minimizer: [
+      new TerserJSPlugin({}), // https://www.npmjs.com/package/mini-css-extract-plugin
+      new OptimizeCssAssetsWebpackPlugin({}), // 压缩css
+    ]
+  },
+```
