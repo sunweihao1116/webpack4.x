@@ -43,3 +43,11 @@ optimization: { // 优化项
     ]
   },
 ```
+
+## 配置babel-loader
+- 安装babel-loader， @babel/core， @babel/preset-env， es6转es5
+- 识别不同高级语法需要对应不同的plugin。
+
+## 配置eslint
+- 安装eslint, eslint-loader
+- 创建.eslintrc.josn  .eslintignore
