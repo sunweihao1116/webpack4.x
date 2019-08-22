@@ -1,0 +1,13 @@
+
+@import './a.css';
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  background: rgba(0, 0, 255, .2);
+  height: 100%;
+  transform: rotate(1deg);
+  backface-visibility: hidden;
+}
+

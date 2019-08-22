@@ -1,6 +1,7 @@
 ## webpack 安装
 - 安装本地的webpack
 - webpack webpack-cli -D
+- webpack-dev-server -D
 
 ## webpack可以进行0配置
 - 打包工具 -> 输出后的结果 (js模块)

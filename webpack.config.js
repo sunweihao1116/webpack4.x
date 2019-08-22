@@ -10,17 +10,13 @@ module.exports = {
   mode: 'production', // 模式 默认两种 production development
   entry: './src/index.js', // 入口
   output: {
-    filename: 'buildle.[hash:8].js', // 打包后的文件名
-    path: path.resolve(__dirname, 'build'), // 路径必须是一个绝对路径
+    filename: '[name].[hash:8].js', // 打包后的文件名
+    path: path.resolve(__dirname, 'dist/webpack4.x'), // 路径必须是一个绝对路径
+    chunkFilename: '[name].min.js', // 分包名称
   },
   optimization: { // 优化项
     minimizer: [
-      // new UglifyJsPlugin({
-      //   cache: true,
-      //   parallel: true,
-      //   sourceMap: true,
-      // }),
-      new TerserJSPlugin({}), // https://www.npmjs.com/package/mini-css-extract-plugin
+      new TerserJSPlugin({}), // https://www.npmjs.com/package/mini-css-extract-plugin // 压缩js
       new OptimizeCssAssetsWebpackPlugin({}), // 压缩css
     ]
   },
@@ -33,7 +29,7 @@ module.exports = {
   module: { //模块
     rules: [ //规则
       // css-loader 解析@import这种语法
-      // style-loader 把css插入到head到标签中
+      // style-loader 把css插入到head到标签中,可用MiniCssExtractPlugin.loader替换，打包成css文件，link引入
       // loader的特点 希望单一
       // loader的用法 字符串只用一个loader
       // 多个loader需要[]
@@ -42,9 +38,6 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          // {
-          //   loader: 'style-loader',
-          // },
           MiniCssExtractPlugin.loader, // 将css打包成文件，link引入
           'css-loader',
           'postcss-loader',
@@ -54,10 +47,7 @@ module.exports = {
       {
         test: /\.less$/,
         use: [
-          MiniCssExtractPlugin.loader, // 将css打包成文件，link引入
-          // {
-          //   loader: 'style-loader',
-          // },
+          MiniCssExtractPlugin.loader, // 将css打包成文件，link引入      
           'css-loader',
           'postcss-loader',
           'less-loader', // 从下向上执行
@@ -69,11 +59,15 @@ module.exports = {
     new htmlWebpackPlugin({
       template: './src/index.html',
       filename: 'index.html',
-      // minify: {
-      //   collapseWhitespace: true,
-      //   removeAttributeQuotes: true,
-      // },
-      // hash: true,
+      /** 
+      minify: {
+        collapseWhitespace: true, // 折叠文档树中文本节点的空白区域
+        removeAttributeQuotes: true, // 删除引号
+        removeComments: true, // 删除html里的注释
+        // more options:
+        // https://github.com/kangax/html-minifier#options-quick-reference
+      }
+      */
     }),
     new MiniCssExtractPlugin({
       filename: 'main.[hash:8].css',
