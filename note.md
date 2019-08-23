@@ -51,3 +51,30 @@ optimization: { // 优化项
 ## 配置eslint
 - 安装eslint, eslint-loader
 - 创建.eslintrc.josn  .eslintignore
+
+## 全局变量引入
+- expose-loader(内联loader) ： import $ from 'expose-loader?$!jquery'; //会暴露到window对象上
+- webpack配置rules 
+  ```
+  {
+    test: require.reslove('jquery'),
+    use: 'expose-loader?$',
+  }
+  ```
+- pulgins配置 // 在所有模块中注入 $
+  ```
+    new Webpack.ProvidePlugin({
+      $: 'jquery' // 需要npm install
+    })
+  ```
+- cdn 引入 不进行打包操作
+ ```
+ externals: {
+   jquery: 'jquery'
+ }
+ ```
+
+ ## 图片文件处理
+ - file-loader 
+ - html-withimg-loader <img src='url' /> 路径引用
+ - 现用url-loader options
