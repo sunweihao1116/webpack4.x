@@ -10,10 +10,10 @@ module.exports = {
   mode: 'development', // development production
   entry: './src/index.js',
   output: {
-    filename: 'static/js/[name].[hash:6].js',
+    filename: '[name].[hash:6].js',
     path: path.resolve(__dirname, 'dist'),
     chunkFilename: '[name].min.js',
-    // publicPath: '/Users/sunweihao/Documents/unicom/webpack4.x/dist/',
+    // publicPath: './static',
   },
   optimization: {
     minimizer: [
@@ -34,6 +34,7 @@ module.exports = {
           {
             loader: 'eslint-loader',
             options: {
+              formatter: require('eslint-friendly-formatter'),
               enforce: 'pre',
               useEslintrc: true,
             },
@@ -47,13 +48,13 @@ module.exports = {
           {
             loader: 'babel-loader', //es6转es5
             options: {
-              presets: [
-                '@babel/preset-env', //es6转es5
-              ],
-              plugins: [
-                '@babel/plugin-proposal-class-properties', // 识别class语法
-                '@babel/plugin-transform-runtime',
-              ],
+              // presets: [
+              //   '@babel/preset-env', //es6转es5
+              // ],
+              // plugins: [
+              //   '@babel/plugin-proposal-class-properties', // 识别class语法
+              //   '@babel/plugin-transform-runtime',
+              // ],
             },
           }
         ],
@@ -84,8 +85,8 @@ module.exports = {
         use: {
           loader: 'url-loader',
           options: {
-            name: 'static/img/[name][hash:4].[ext]',
-            limit: 500 * 1024,
+            name: '[name][hash:4].[ext]',
+            limit: 100 * 1024,
             // outputPath: '', // 导出路径
             // pubilcPath: '', 单独加路径
           },
@@ -103,7 +104,7 @@ module.exports = {
       filename: 'index.html',
     }),
     new MiniCssExtractPlugin({
-      filename: 'static/css/main.[hash:8].css',
+      filename: 'main.[hash:8].css',
     }),
     // new Webpack.ProvidePlugin({ // 所有模块中注入$
     //   $: 'jquery',

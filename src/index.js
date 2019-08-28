@@ -1,4 +1,5 @@
-// const str = () => import(/* webpackChunkName: "a" */ './assets/js/a') /* webpackPrefetch: true */ // 预加载
+// const str = () => import(/* webpackChunkName: "a" */ './assets/js/a'); /* webpackPrefetch: true */ // 预加载
+// import add from './assets/js/a';
 // eslint-disable-next-line no-undef
 // const str = require('./assets/js/a');
 import str from './assets/js/a';
