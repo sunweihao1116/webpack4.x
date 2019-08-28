@@ -78,3 +78,7 @@ optimization: { // 优化项
  - file-loader 
  - html-withimg-loader <img src='url' /> 路径引用
  - 现用url-loader options
+
+
+ ## 多页面应用，多个HtmlWebpackPlugin
+ - chunks
