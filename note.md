@@ -82,3 +82,36 @@ optimization: { // 优化项
 
  ## 多页面应用，多个HtmlWebpackPlugin
  - chunks
+
+## devtool配置 此选项控制是否生成，以及如何生成 source map。
+- source-map  增强调试过程
+- https://webpack.docschina.org/configuration/devtool/#devtool
+
+## watch 监听文件变化，当它们修改后会重新编译。
+- 实时打包
+- watchOptions 监控选项
+
+## 常用小插件
+- CopyWebpackPlugin ...
+- DefinePlugin BannerPlugin webpack内置
+
+## 跨越问题
+- 1) devServer.porxy 配置代理
+- 2）devServer.before(app) {} // 单纯模拟数据接口
+- 3） webpack-dev-middleware中间件完成服务端启用前端webpack
+  ```
+    const express = require('express'); // webpack内带，免安装
+
+    // 服务端启动webpack
+    const webpack = require('webpack');
+    const middle = require('webpack-dev-middleware');
+    const config = require('./webpack.config.js');
+    const compiler = webpack(config);
+    const app = express();
+    app.use(middle(compiler))
+    app.get('/user', (req, res) => { // api 接口
+      res.json({ name: 'lalala' });
+    })
+
+    app.listen(3000);
+  ```
