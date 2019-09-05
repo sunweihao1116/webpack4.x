@@ -115,3 +115,9 @@ optimization: { // 优化项
 
     app.listen(3000);
   ```
+
+  ## resolve 解析
+  - alias 创建 import 或 require 的别名 '@': './src';
+  - extensions 自动解析确定的扩展 ['.css', '.js', '.vue', '.json', '*'];
+  - modules: ['node_modules'] 告诉 webpack 解析模块时应该搜索的目录;
+  - ...

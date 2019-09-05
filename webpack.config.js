@@ -16,6 +16,13 @@ module.exports = {
     chunkFilename: '[name].min.js',
     // publicPath: './static',
   },
+  resolve: { // 解析
+    extensions: ['.js', '.css', '.vue'],
+    modules: [path.resolve(__dirname, 'node_modules')],
+    alias: {
+      '@': './src',
+    }
+  }, 
   devServer: {
     // 1)
     proxy: {
@@ -47,7 +54,11 @@ module.exports = {
           }
         ],
         include: [path.resolve(__dirname, 'src')],
-      }
+      },
+      {
+        test: /\.css/,
+        use: ['style-loader', 'css-loader'],
+      },
     ]
   },
   plugins: [ // 所有webpack插件
@@ -58,6 +69,6 @@ module.exports = {
     new Webpack.DefinePlugin({
       'process.env': '"sss"',
     }),
-    new Webpack.BannerPlugin('webpack bannerPlugin')
+    new Webpack.BannerPlugin('webpack bannerPlugin'),
   ],
 }

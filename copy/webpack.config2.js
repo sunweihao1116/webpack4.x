@@ -15,12 +15,12 @@ module.exports = {
     chunkFilename: '[name].min.js',
     // publicPath: './static',
   },
-  // resolve: { // 解析
-  //   externals: ['.js'],
-  //   alias: {
-  //     '@': './src',
-  //   }
-  // }, 
+  resolve: { // 解析
+    extensions: ['.js', '*'],
+    alias: {
+      '@': './src',
+    }
+  }, 
   // watch: true,
   optimization: { // 优化项
     minimizer: [
