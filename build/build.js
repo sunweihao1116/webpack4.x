@@ -3,6 +3,7 @@ const ora = require('ora');
 const chalk = require('chalk')
 const webpackConfig = require('../webpack.config');
 
+process.env.NODE_ENV = 'production';
 const spinner = ora('building for production...');
 spinner.start();
 console.log('process.argv--------------', process.argv); //命令行数组

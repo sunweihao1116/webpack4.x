@@ -1,8 +1,8 @@
 // https://webpack.docschina.org/configuration/
 const path = require('path');
+const config = require('./config');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Webpack = require('webpack');
-const config = require('./config');
 const env = require('./config/prod.env');
 
 // 1) CopyWebpackPlugin // 复制文件到打包目录中
@@ -14,6 +14,7 @@ const assetsPath = (_path) => {
   return path.join(assetsSubDirectory, _path);
 }
 
+console.log('-----------', env.NODE_ENV);
 module.exports = {
   mode: 'development', // development production
   entry: './src/index.js',
@@ -21,7 +22,6 @@ module.exports = {
     filename: assetsPath('[name].[hash:6].js'),
     path: path.resolve(__dirname, 'dist'),
     chunkFilename: assetsPath('[name].min.js'),
-    // publicPath: './static',
   },
   resolve: { // 解析
     extensions: ['.js', '.css', '.vue'],
@@ -31,6 +31,7 @@ module.exports = {
     }
   }, 
   devServer: {
+    // 1)
     proxy: config.dev.proxy,
     port: config.dev.prot,
     host: config.dev.host,
@@ -59,8 +60,7 @@ module.exports = {
   plugins: [ // 所有webpack插件
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      filename: 'index.html', //dev
-      // filename: config.build.index, // pro
+      filename: config.build.index,
     }),
     new Webpack.DefinePlugin({
       'process.env': env,

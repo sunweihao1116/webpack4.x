@@ -121,3 +121,5 @@ optimization: { // 优化项
   - extensions 自动解析确定的扩展 ['.css', '.js', '.vue', '.json', '*'];
   - modules: ['node_modules'] 告诉 webpack 解析模块时应该搜索的目录;
   - ...
+
+  ## DefinePlugin 定义环境变量
