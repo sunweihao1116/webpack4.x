@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getCookie } from '../utils/cookie';
 
-window.cancel = null;
+window._cancel = null;
 const CancelToken = axios.CancelToken;
 
 const fetch = (url, params = {}, method = 'GET', tokenType = '') => {
@@ -11,13 +11,13 @@ const fetch = (url, params = {}, method = 'GET', tokenType = '') => {
     headers: { 'Content-Type': 'application/json' },
     tokenType,
     cancelToken: new CancelToken(function executor(c) {
-      if (!window.cancel) {
+      if (!window._cancel) {
         console.log('!null');
-        window.cancel = c;
+        window._cancel = c;
       } else {
         console.log('null');
-        window.cancel();
-        window.cancel = c;
+        window._cancel();
+        window._cancel = c;
       }
       // 这个参数 c 就是CancelToken构造函数里面自带的取消请求的函数，这里把该函数当参数用
     })
@@ -38,7 +38,7 @@ const fetch = (url, params = {}, method = 'GET', tokenType = '') => {
   return new Promise((resolve, reject) => {
     axios(config).then(res => {
       resolve(res.data);
-      window.cancel = null;
+      window._cancel = null;
     }).catch(err => {
       let error = {
         message: '网络错误',
@@ -50,7 +50,7 @@ const fetch = (url, params = {}, method = 'GET', tokenType = '') => {
           httpstatus: d.errCode,
         };
       }
-      window.cancel = null;
+      window._cancel = null;
       reject(error);
     });
   });

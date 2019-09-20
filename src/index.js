@@ -3,13 +3,12 @@ import { getUserInfo, login } from './server';
 import { setCookie } from './utils/cookie';
 // login 
 const params = {
-    user_name: 'sjx',
-    password: 'sjx1314',
+    user_name: 'swh',
+    password: 'swh1116',
 }
 login(params).then(res => {
   console.log('success', res);
-  // window._token = res.token;
-  setCookie('webpack_token', res.token);
+  setCookie('webpack_token', res.token, 1);
   getUserInfo().then(r => {
     console.log(r);
   }).catch(e => {
@@ -19,7 +18,11 @@ login(params).then(res => {
   console.log('error', err);
 });
 
-
+// getUserInfo().then(r => {
+//   console.log(r);
+// }).catch(e => {
+//   console.log(e);
+// });
 
 
 // setTimeout(() => {
