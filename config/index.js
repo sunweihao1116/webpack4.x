@@ -32,9 +32,9 @@ module.exports = {
     cssSourceMap: true,
   },
   build: {
-    index: path.resolve(__dirname, `../dist/${JSON.parse(prodEnv.PATH)}/index.html`),
+    index: path.resolve(__dirname, `../dist/index.html`),
     assetsRoot: path.resolve(__dirname, '../dist'),
-    assetsSubDirectory: `${JSON.parse(prodEnv.PATH)}/static`,
+    assetsSubDirectory: `static`,
     assetsPublicPath: `/`,
     productionSourceMap: true,
     // https://webpack.js.org/configuration/devtool/#production
