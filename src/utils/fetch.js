@@ -28,11 +28,12 @@ const fetch = (url, params = {}, method = 'GET', tokenType = '') => {
     config.data = params;
   }
   if (config.tokenType) {
-    const token = getCookie(config.tokenType);
+    const token = getCookie(config.tokenType) || '';
     if (token) {
       config.headers['Authorization'] = token;
     } else {
       console.log('token is nil');
+      return;
     }
   }  
   return new Promise((resolve, reject) => {

@@ -11,6 +11,12 @@ module.exports = {
         target: 'http://localhost:3000', // 配置代理
         // pathRewrite: {'^/api' : ''}, //重写请求路径
       },
+      '/ws': {
+        target: 'ws://localhost:8000',
+        ws: true,
+        secure: false,
+        pathRewrite: {'^/ws' : ''}, //重写请求路径
+      },
       // 2) 单纯模仿数据
       // before(app) {
       //   app.get('/user', (req, res) => { // api 接口
